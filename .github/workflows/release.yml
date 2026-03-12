@@ -19,6 +19,8 @@ jobs:
     outputs:
       changes-docs: ${{ steps.detect.outputs.docs }}
       changes-packages: ${{ steps.detect.outputs.packages }}
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'   # Node 24
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
