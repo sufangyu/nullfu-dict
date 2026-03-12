@@ -1,0 +1,133 @@
+name: Release
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # 环境准备
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      changes-docs: ${{ steps.detect.outputs.docs }}
+      changes-packages: ${{ steps.detect.outputs.packages }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        id: detect
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            docs:
+              - 'docs/**'
+            packages:
+              - 'packages/**'
+
+      - name: Install Node & pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+  # Publish npm
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.setup.outputs.changes-packages == 'true'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js & pnpm (with cache)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Publish packages
+        run: pnpm -r publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
+  # Deploy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            docs:
+              - 'docs/**'
+            packages:
+              - 'packages/**'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build docs
+        if: steps.changes.outputs.docs == 'true' || steps.changes.outputs.packages == 'true'
+        run: cd docs && pnpm docs:build
+
+      - name: Deploy to Vercel
+        if: github.ref == 'refs/heads/main' && (steps.changes.outputs.docs == 'true' || steps.changes.outputs.packages == 'true')
+        run: |
+          npx vercel deploy docs/.vitepress/dist \
+          --prod \
+          --token=${{ secrets.VERCEL_TOKEN }} \
+          --yes
