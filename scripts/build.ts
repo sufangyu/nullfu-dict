@@ -17,4 +17,4 @@ const taskList: TaskItem[] = [
   },
 ];
 
-runTasks(taskList, 1);
+runTasks(taskList, 4);

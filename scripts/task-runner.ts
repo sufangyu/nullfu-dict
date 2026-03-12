@@ -17,31 +17,44 @@ export async function runTasks(taskList: TaskItem[], parallelLimit = 4) {
 
   const queue = new PQueue({ concurrency: parallelLimit });
 
+  // 保存每个任务的最新 promise
+  const taskPromisesMap = new Map<string, Promise<unknown>>();
 
-  consola.info('🚀 启动任务...');
-  const taskPromises = sortedTasks.map((task) => {
+  // 创建 runner 并加入队列
+  const createQueuedRunner = (task: TaskItem) => {
     const runner = async () => {
-      // 避免任务瞬间冲突
+      // 等待依赖完成
+      if (task.dependsOn?.length) {
+        await Promise.all(task.dependsOn.map(dep => taskPromisesMap.get(dep)!));
+      }
+
       await sleep(200);
       consola.info(`🚀 执行: ${task.id}`);
       return createRunner(task)();
     };
 
-    // 监听 watch 文件
-    if (task.watch?.length) {
-      consola.info(`👀 监听 ${task.id}:`, task.watch);
-      const watcher = chokidar.watch(task.watch, { ignoreInitial: true });
+    // queue.add 返回一个 promise
+    const queuedPromise = queue.add(runner);
+    taskPromisesMap.set(task.id, queuedPromise);
+    return queuedPromise;
+  };
 
+  // 初始化任务队列
+  sortedTasks.forEach((task) => {
+    createQueuedRunner(task);
+
+    // watch 监听
+    if (task.watch?.length) {
+      const watcher = chokidar.watch(task.watch, { ignoreInitial: true });
       watcher.on('all', () => {
         consola.info(`🔄 ${task.id} 触发文件变更，重新执行...`);
-        queue.add(runner);
+        createQueuedRunner(task);
       });
     }
-
-    return queue.add(runner);
   });
 
-  await Promise.all(taskPromises);
+  // 等待所有任务完成
+  await Promise.all(taskPromisesMap.values());
   consola.success('🎉 所有任务执行完成！');
 }
 
