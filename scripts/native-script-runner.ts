@@ -25,7 +25,7 @@ import process from 'node:process';
 import { consola } from 'consola';
 import fg from 'fast-glob';
 import minimist from 'minimist';
-import { readYamlField, runScript } from './utils';
+import { getWorkspacePatterns, runScript } from './utils';
 
 
 /**
@@ -137,7 +137,7 @@ async function runTasks(tasks: ScriptTaskNative[], cli: ReturnType<typeof parseC
  * 4. 过滤未定义 scripts.test 的包
  */
 async function collectTestTasks(cli: ReturnType<typeof parseCli>) {
-  const patterns = getWorkspacePatterns();
+  const patterns = getWorkspacePatterns(rootDir);
   const packageJsonPaths = await fg(
     patterns.map(p => `${p}/package.json`),
     {
@@ -174,22 +174,6 @@ async function collectTestTasks(cli: ReturnType<typeof parseCli>) {
   }
 
   return tasks;
-}
-
-
-/**
- * 获取 pnpm 工作目录配置
- *
- * 示例：
- *
- * packages:
- *   - packages/*
- *   - apps/*
- */
-function getWorkspacePatterns(): string[] {
-  const workspaceFile = path.join(rootDir, 'pnpm-workspace.yaml');
-
-  return readYamlField<string[]>(workspaceFile, 'packages', ['packages/*']);
 }
 
 

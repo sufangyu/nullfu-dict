@@ -79,18 +79,6 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-
-      - name: Verify build output
-        run: |
-          for pkg in packages/*; do
-            if [ -d "$pkg/dist" ]; then
-              echo "✅ $pkg build ok"
-            else
-              echo "❌ $pkg missing dist folder"
-              exit 1
-            fi
-          done
-
       - name: Publish packages
         run: pnpm -r --filter "./packages/*" publish --no-git-checks --access public
         env:

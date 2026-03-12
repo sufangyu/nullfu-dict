@@ -195,6 +195,24 @@ export function readYamlField<T>(
 
 
 /**
+ * 获取 pnpm 工作目录配置
+ * @param rootDir 根目录
+ * @param ignore 忽略的包
+ *
+ * 示例：
+ *
+ * packages:
+ *   - packages/*
+ *   - apps/*
+ */
+export function getWorkspacePatterns(rootDir: string, ignore: string[] = []): string[] {
+  const workspaceFile = path.join(rootDir, 'pnpm-workspace.yaml');
+
+  return readYamlField<string[]>(workspaceFile, 'packages', ['packages/*']).filter(p => !ignore.includes(p));
+}
+
+
+/**
  * 运行脚本
  * @param dir
  * @param script
