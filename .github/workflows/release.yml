@@ -6,6 +6,15 @@ on:
     tags:
       - 'v*'          # 仅在推送 tag v* 时触发
   workflow_dispatch:  # 保留手动触发
+    inputs:
+      release-version:
+        description: '发布版本号 (例如 v1.0.0)'
+        required: false
+        default: ''
+      skip-docs:
+        description: '是否跳过 docs 构建'
+        required: false
+        default: 'false'
 
 permissions:
   contents: read
