@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "prepublishOnly": "npm run build",
-    "dev": "pnpm run lint && pnpm tsx scripts/watch",
+    "dev": "pnpm run lint && pnpm tsx scripts/dev",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix",
     "inspect:eslint": "pnpm exec eslint-config-inspector",
