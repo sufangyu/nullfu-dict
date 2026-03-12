@@ -1,5 +1,5 @@
 {
-  "name": "@nullfu/dict-docs",
+  "name": "@nullfux/dict-docs",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nullfu/dict-core": "workspace:^",
-    "@nullfu/dict-vue": "workspace:^"
+    "@nullfux/dict-core": "workspace:^",
+    "@nullfux/dict-vue": "workspace:^"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",

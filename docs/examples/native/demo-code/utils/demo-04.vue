@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { DictItemDefault } from '@nullfu/dict-core';
-import { treeToArray } from '@nullfu/dict-core';
+import type { DictItemDefault } from '@nullfux/dict-core';
+import { treeToArray } from '@nullfux/dict-core';
 import { ref } from 'vue';
 
 interface DictItem {

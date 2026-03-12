@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { CacheItem, DictItemDefault } from '@nullfu/dict-core';
-import { createDictManager } from '@nullfu/dict-core';
+import type { CacheItem, DictItemDefault } from '@nullfux/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 import { onMounted, ref } from 'vue';
 
 const cacheDict = ref<CacheItem<DictItemDefault>>();

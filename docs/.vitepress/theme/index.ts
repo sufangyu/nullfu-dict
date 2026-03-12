@@ -1,6 +1,6 @@
 /* eslint-disable check-file/folder-naming-convention */
 import type { Theme } from 'vitepress';
-import { setupDictPlugin } from '@nullfu/dict-vue';
+import { setupDictPlugin } from '@nullfux/dict-vue';
 import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import DefaultTheme from 'vitepress/theme';

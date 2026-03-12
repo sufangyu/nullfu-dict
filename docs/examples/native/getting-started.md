@@ -8,15 +8,15 @@
 ::: code-group
 
 ```sh [npm]
-$ npm install @nullfu/dict-core
+$ npm install @nullfux/dict-core
 ```
 
 ```sh [pnpm]
-$ pnpm add @nullfu/dict-core
+$ pnpm add @nullfux/dict-core
 ```
 
 ```sh [yarn]
-$ yarn add @nullfu/dict-core
+$ yarn add @nullfux/dict-core
 ```
 
 :::
@@ -26,7 +26,7 @@ $ yarn add @nullfu/dict-core
 ## 使用
 
 ```ts
-import { createDictManager } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 
 const dictManager = createDictManager<TDict, TResponse>({
   url: '/api/dict',

@@ -1,5 +1,5 @@
 <script lang="tsx" setup>
-import { useDict } from '@nullfu/dict-vue';
+import { useDict } from '@nullfux/dict-vue';
 
 const code = 'DICT_OTHER';
 const codes = ['DICT_STYLES', 'DICT_REASON'] as const;

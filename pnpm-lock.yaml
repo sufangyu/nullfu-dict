@@ -65,10 +65,10 @@ importers:
 
   docs:
     dependencies:
-      '@nullfu/dict-core':
+      '@nullfux/dict-core':
         specifier: workspace:^
         version: link:../packages/core
-      '@nullfu/dict-vue':
+      '@nullfux/dict-vue':
         specifier: workspace:^
         version: link:../packages/vue
     devDependencies:
@@ -110,7 +110,7 @@ importers:
 
   packages/vue:
     dependencies:
-      '@nullfu/dict-core':
+      '@nullfux/dict-core':
         specifier: workspace:^
         version: link:../core
       vue:

@@ -1,8 +1,8 @@
 // 创建插件（支持全局配置）
-import type { DictManagerOptions } from '@nullfu/dict-core';
+import type { DictManagerOptions } from '@nullfux/dict-core';
 import type { App } from 'vue';
 import type { MultiDictOptions } from './types';
-import { createDictManager } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 import { DictManagerKey } from './symbols';
 
 

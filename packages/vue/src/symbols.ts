@@ -1,5 +1,5 @@
 // 创建 Injection Key
-import type { createDictManager, DictManagerOptions } from '@nullfu/dict-core';
+import type { createDictManager, DictManagerOptions } from '@nullfux/dict-core';
 import type { InjectionKey } from 'vue';
 
 /**

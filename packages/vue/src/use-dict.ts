@@ -1,7 +1,7 @@
-import type { DictItemDefault, DictManagerOptions, FetchDictOptions, HTTPError } from '@nullfu/dict-core';
+import type { DictItemDefault, DictManagerOptions, FetchDictOptions, HTTPError } from '@nullfux/dict-core';
 import type { ComputedRef, MaybeRef } from 'vue';
 import type { DictCodes } from './types';
-import { getDictItems, getDictLabel } from '@nullfu/dict-core';
+import { getDictItems, getDictLabel } from '@nullfux/dict-core';
 import { computed, isRef, ref, shallowRef, unref, watch } from 'vue';
 import { useDictManager } from './use-dict-manager';
 

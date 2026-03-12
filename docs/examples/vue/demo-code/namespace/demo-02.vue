@@ -1,5 +1,5 @@
 <script lang="tsx" setup>
-import { useDict } from '@nullfu/dict-vue';
+import { useDict } from '@nullfux/dict-vue';
 import { ElMessage } from 'element-plus';
 
 

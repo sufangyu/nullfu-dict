@@ -8,7 +8,7 @@
 
 ### 注册插件
 ```ts
-import { setupDictPlugin } from '@nullfu/dict-vue';
+import { setupDictPlugin } from '@nullfux/dict-vue';
 
 app.use(
   setupDictPlugin({

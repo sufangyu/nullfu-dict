@@ -4,6 +4,6 @@
 
 | Module                      | Description |
 |-----------------------------|-------------|
-| [@nullfu/dict-core](./core) | 核心库      |
-| [@nullfu/dict-vue](./vue)   | Vue Hooks   |
+| [@nullfux/dict-core](./core) | 核心库      |
+| [@nullfux/dict-vue](./vue)   | Vue Hooks   |
 

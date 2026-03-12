@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getOptionLabel, transformToOptions } from '@nullfu/dict-core';
+import { getOptionLabel, transformToOptions } from '@nullfux/dict-core';
 import { computed, ref } from 'vue';
 
 const STATUS_OBJ = {

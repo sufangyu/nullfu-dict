@@ -1,4 +1,4 @@
-# @nullfu/dict-vue
+# @nullfux/dict-vue
 
 Vue Hooks API 介绍。
 
@@ -56,7 +56,7 @@ export function useDict<
 ## Types
 
 ```ts
-import type { DictManagerOptions } from '@nullfu/dict-core';
+import type { DictManagerOptions } from '@nullfux/dict-core';
 import type { Ref } from 'vue';
 
 /**

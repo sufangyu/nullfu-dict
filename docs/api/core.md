@@ -1,4 +1,4 @@
-# @nullfu/dict-core
+# @nullfux/dict-core
 
 核心库 API 介绍
 

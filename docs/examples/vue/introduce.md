@@ -1,11 +1,11 @@
 # Hooks 介绍
 
-`@nullfu/dict-vue`是使用`@nullfu/dict-core`中`createDictManager`封装的 Vue Hooks, 并且提供完整的字典数据管理功能以及相应的工具函数。
+`@nullfux/dict-vue`是使用`@nullfux/dict-core`中`createDictManager`封装的 Vue Hooks, 并且提供完整的字典数据管理功能以及相应的工具函数。
 
 考虑可能会存在不同来源的字典数据源, 故支持不同命名空间有自己的字段配置, 例如:
 
 ```ts
-import { setupDictPlugin } from '@nullfu/dict-vue';
+import { setupDictPlugin } from '@nullfux/dict-vue';
 
 app.use(
   setupDictPlugin({

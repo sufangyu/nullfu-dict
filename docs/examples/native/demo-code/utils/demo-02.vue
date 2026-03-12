@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { DictItemDefault } from '@nullfu/dict-core';
-import { getDictLabel } from '@nullfu/dict-core';
+import type { DictItemDefault } from '@nullfux/dict-core';
+import { getDictLabel } from '@nullfux/dict-core';
 import { computed } from 'vue';
 
 // 自定义的数据类型

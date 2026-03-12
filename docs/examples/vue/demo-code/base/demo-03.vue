@@ -1,5 +1,5 @@
 <script lang="tsx" setup>
-import { useDict } from '@nullfu/dict-vue';
+import { useDict } from '@nullfux/dict-vue';
 
 // 使用 as const 才会把数组当作 只读元组（readonly tuple）
 const codes = ['DICT_STYLES', 'DICT_REASON'] as const;

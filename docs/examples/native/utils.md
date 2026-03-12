@@ -1,6 +1,6 @@
 # 工具函数
 
-`@nullfu/dict-core` 提供了一些工具函数，用于字典数据处理。
+`@nullfux/dict-core` 提供了一些工具函数，用于字典数据处理。
 
 
 ## `getDictItems<TDictItem, CKey>(dict, options?)`

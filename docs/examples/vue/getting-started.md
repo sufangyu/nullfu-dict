@@ -8,15 +8,15 @@
 ::: code-group
 
 ```sh [npm]
-$ npm install @nullfu/dict-vue
+$ npm install @nullfux/dict-vue
 ```
 
 ```sh [pnpm]
-$ pnpm add @nullfu/dict-vue
+$ pnpm add @nullfux/dict-vue
 ```
 
 ```sh [yarn]
-$ yarn add @nullfu/dict-vue
+$ yarn add @nullfux/dict-vue
 ```
 
 :::
@@ -25,7 +25,7 @@ $ yarn add @nullfu/dict-vue
 ## 注册插件
 
 ```ts
-import { setupDictPlugin } from '@nullfu/dict-vue';
+import { setupDictPlugin } from '@nullfux/dict-vue';
 
 const app = createApp(App);
 
@@ -42,7 +42,7 @@ app.mount('#app');
 
 ```vue
 <script setup lang="ts">
-import { useDict } from '@nullfu/dict-vue';
+import { useDict } from '@nullfux/dict-vue';
 
 const code = 'DICT_REASON';
 const { loading, data, dictMap } = useDict(code);

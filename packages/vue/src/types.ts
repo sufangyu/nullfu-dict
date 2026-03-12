@@ -1,4 +1,4 @@
-import type { DictManagerOptions } from '@nullfu/dict-core';
+import type { DictManagerOptions } from '@nullfux/dict-core';
 import type { Ref } from 'vue';
 
 /**

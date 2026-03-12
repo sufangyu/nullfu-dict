@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@nullfu/dict-docs"]
+  "ignore": ["@nullfux/dict-docs"]
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { DictItemDefault } from '@nullfu/dict-core';
-import { createDictManager } from '@nullfu/dict-core';
+import type { DictItemDefault } from '@nullfux/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 import { onMounted, ref } from 'vue';
 
 const dictData = ref<Record<string, DictItemDefault>>({});

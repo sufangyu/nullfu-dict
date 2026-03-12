@@ -2,7 +2,7 @@ import type {
   DictManagerOptions,
   FetchDictOptions,
   RequestConfig,
-} from '@nullfu/dict-core';
+} from '@nullfux/dict-core';
 import {
   createDictManager,
   getDictItems,
@@ -11,7 +11,7 @@ import {
   listToTree,
   transformToOptions,
   treeToArray,
-} from '@nullfu/dict-core';
+} from '@nullfux/dict-core';
 
 export * from './plugin';
 export * from './use-dict';

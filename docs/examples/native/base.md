@@ -15,7 +15,7 @@ const { loading, data, dictMap } = useDict(code);
 通过`createDictManager`创建管理器后, 使用管理器的`fetchDict`方法获取字典数据。
 
 ```ts
-import { createDictManager } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 
 const dictManager = createDictManager({
   baseURL: 'http://localhost:5173',

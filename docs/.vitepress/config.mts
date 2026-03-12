@@ -108,11 +108,11 @@ function nav(): DefaultTheme.NavItem[] {
       link: '/api',
       // items: [
       //   {
-      //     text: '@nullfu/dict-core',
+      //     text: '@nullfux/dict-core',
       //     link: '/api/core',
       //   },
       //   {
-      //     text: '@nullfu/dict-vue',
+      //     text: '@nullfux/dict-vue',
       //     link: '/api/vue',
       //   },
       // ],
@@ -122,11 +122,11 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: '/examples/',
       items: [
         {
-          text: '@nullfu/dict-core',
+          text: '@nullfux/dict-core',
           link: '/examples/native/introduce',
         },
         {
-          text: '@nullfu/dict-vue',
+          text: '@nullfux/dict-vue',
           link: '/examples/vue/introduce',
         },
       ],
@@ -141,8 +141,8 @@ function sidebarApi(): DefaultTheme.SidebarItem[] {
       text: 'API & Types',
       // collapsed: false,
       items: [
-        { text: '@nullfu/dict-core', link: '/core' },
-        { text: '@nullfu/dict-vue', link: '/vue' },
+        { text: '@nullfux/dict-core', link: '/core' },
+        { text: '@nullfux/dict-vue', link: '/vue' },
       ],
     },
   ];
@@ -156,7 +156,7 @@ function sidebarApi(): DefaultTheme.SidebarItem[] {
 function sidebarDemo(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: '@nullfu/dict-core',
+      text: '@nullfux/dict-core',
       collapsed: false,
       items: [
         { text: '核心库介绍', link: '/native/introduce' },
@@ -172,7 +172,7 @@ function sidebarDemo(): DefaultTheme.SidebarItem[] {
       ],
     },
     {
-      text: '@nullfu/dict-vue',
+      text: '@nullfux/dict-vue',
       collapsed: false,
       items: [
         { text: 'Hooks 介绍', link: '/vue/introduce' },

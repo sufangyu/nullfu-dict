@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { createDictManager } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 import { onMounted, ref } from 'vue';
 
 

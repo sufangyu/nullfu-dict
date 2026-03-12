@@ -1,5 +1,5 @@
-import type { DictItemDefault, DictManagerOptions } from '@nullfu/dict-core';
-import { createDictManager } from '@nullfu/dict-core';
+import type { DictItemDefault, DictManagerOptions } from '@nullfux/dict-core';
+import { createDictManager } from '@nullfux/dict-core';
 import { inject } from 'vue';
 import { DictManagerKey } from './symbols';
 

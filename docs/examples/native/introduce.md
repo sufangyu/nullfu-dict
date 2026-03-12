@@ -1,6 +1,6 @@
 # 核心库介绍
 
-`@nullfu/dict-core`是一个用于字典数据请求合并、缓存、重试、降级、LRU 管理 的高性能工具，适用于后台配置字典、状态枚举、选项列表等场景。
+`@nullfux/dict-core`是一个用于字典数据请求合并、缓存、重试、降级、LRU 管理 的高性能工具，适用于后台配置字典、状态枚举、选项列表等场景。
 
 同时, 也提供了一些相应的工具函数, 如：`transformToOptions`、`getDictItems`、`getDictLabel`、`getOptionLabel`、`listToTree`、`treeToArray`。
 

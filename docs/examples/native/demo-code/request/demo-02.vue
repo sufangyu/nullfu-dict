@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { DictItemDefault } from '@nullfu/dict-core';
-import { createDictManager, getDictItems } from '@nullfu/dict-core';
+import type { DictItemDefault } from '@nullfux/dict-core';
+import { createDictManager, getDictItems } from '@nullfux/dict-core';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 
