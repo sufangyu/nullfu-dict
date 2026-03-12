@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems } from '@nullfu/dict-core';
 import { onMounted, ref } from 'vue';
-import { createDictManager, getDictItems, type DictItemDefault } from '@nullfu/dict-core';
 
 
 const dictManager = createDictManager({
@@ -11,14 +12,14 @@ const dictManager = createDictManager({
 
 
 const stylesDictList = ref<DictItemDefault[]>([]);
-const getDictStyles = async(disableCache = false) => {
+async function getDictStyles(disableCache = false) {
   const res = await dictManager.fetchDict('DICT_STYLES', { disableCache });
   console.log('DICT_STYLES', res);
   stylesDictList.value = getDictItems(res.DICT_STYLES);
-};
+}
 
 
-onMounted(async() => {
+onMounted(async () => {
   getDictStyles();
 });
 </script>
@@ -26,7 +27,11 @@ onMounted(async() => {
 
 <template>
   <div>
-    <p class="my-1!">DICT_STYLES: {{ stylesDictList.length }}</p>
-    <ElButton type="primary" @click="getDictStyles(false)">再次获取字典</ElButton>
+    <p class="my-1!">
+      DICT_STYLES: {{ stylesDictList.length }}
+    </p>
+    <ElButton type="primary" @click="getDictStyles(false)">
+      再次获取字典
+    </ElButton>
   </div>
 </template>

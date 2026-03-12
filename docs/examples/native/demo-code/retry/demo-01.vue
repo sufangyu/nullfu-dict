@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { createDictManager } from '@nullfu/dict-core';
+import { ref } from 'vue';
 
 
 const retryConfig = ref({
@@ -8,7 +8,7 @@ const retryConfig = ref({
   retryDelay: 200,
 });
 
-const handleGetDictRetry = async() => {
+async function handleGetDictRetry() {
   console.log('当前重试配置::', retryConfig.value);
   const retryDictManager = createDictManager({
     url: 'https://api.demo.com/api/dict',
@@ -17,8 +17,6 @@ const handleGetDictRetry = async() => {
 
   await retryDictManager.fetchDict('DICT_RETRY');
 }
-
-
 </script>
 
 
@@ -40,7 +38,9 @@ const handleGetDictRetry = async() => {
         </div>
       </ElFormItem>
       <ElFormItemm>
-        <ElButton type="primary" @click="handleGetDictRetry">获取字典</ElButton>
+        <ElButton type="primary" @click="handleGetDictRetry">
+          获取字典
+        </ElButton>
       </ElFormItemm>
     </ElForm>
   </div>

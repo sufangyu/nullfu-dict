@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfu/dict-core';
 import { onMounted, ref } from 'vue';
-import { createDictManager, type DictItemDefault, getDictItems } from '@nullfu/dict-core';
 
 const dictData = ref<Record<string, DictItemDefault>>({});
 
@@ -9,7 +10,7 @@ const dictManager = createDictManager({
   url: '/api/dict',
 });
 
-onMounted(async() => {
+onMounted(async () => {
   const res = await dictManager.fetchDict(['DICT_STYLES', 'DICT_REASON']);
   dictData.value = res;
   console.log('字典查询结果::', res);
@@ -20,15 +21,23 @@ onMounted(async() => {
 <template>
   <div>
     <div>
-      <h1 class="text-lg! my-1!">字典数据-DICT_STYLES:</h1>
-      <p class="my-1!">{{ dictData.DICT_STYLES }}</p>
+      <h1 class="text-lg! my-1!">
+        字典数据-DICT_STYLES:
+      </h1>
+      <p class="my-1!">
+        {{ dictData.DICT_STYLES }}
+      </p>
     </div>
 
-    <div class="border-t border-gray-500 my-6"></div>
+    <div class="border-t border-gray-500 my-6" />
 
     <div>
-      <h1 class="text-lg! my-1!">字典数据-DICT_REASON:</h1>
-      <p class="my-1!">{{ dictData.DICT_REASON }}</p>
+      <h1 class="text-lg! my-1!">
+        字典数据-DICT_REASON:
+      </h1>
+      <p class="my-1!">
+        {{ dictData.DICT_REASON }}
+      </p>
     </div>
   </div>
 </template>

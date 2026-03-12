@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { CacheItem, DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager } from '@nullfu/dict-core';
 import { onMounted, ref } from 'vue';
-import { CacheItem, createDictManager, type DictItemDefault, getDictItems } from '@nullfu/dict-core';
 
 const cacheDict = ref<CacheItem<DictItemDefault>>();
 
@@ -10,7 +11,7 @@ const dictManager = createDictManager({
   url: '/api/dict',
 });
 
-onMounted(async() => {
+onMounted(async () => {
   await dictManager.fetchDict(code);
   cacheDict.value = dictManager.getDictCache(code);
   console.log('字典缓存信息::', cacheDict.value);
@@ -19,7 +20,7 @@ onMounted(async() => {
 
 
 <template>
-<div>
-  <p>字典缓存信息: {{ cacheDict }}</p>
-</div>
+  <div>
+    <p>字典缓存信息: {{ cacheDict }}</p>
+  </div>
 </template>

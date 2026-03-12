@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems } from '@nullfu/dict-core';
 import { ref } from 'vue';
-import { createDictManager, DictItemDefault, getDictItems } from '@nullfu/dict-core';
 
 
 // 配置项
@@ -17,7 +18,7 @@ const dictManager = createDictManager({
   url: '/api/dict',
 });
 
-const handleGetDictData = async () => {
+async function handleGetDictData() {
   dictList.value = [];
   dictItem.value = null;
 
@@ -39,33 +40,37 @@ const handleGetDictData = async () => {
 
 
 <template>
-<div>
-  <p class="my-1!">字典数据: {{ dictList.length }}</p>
-  <p class="my-1!">选择字典: {{ dictItem }}</p>
-  <ElSelect v-model="dictItem" placeholder="请选择字典">
-    <ElOption
-      v-for="item in dictList"
-      :key="item.id"
-      :label="item.label"
-      :value="item.value"
-      :disabled="item.enabled === '0'"
-    >
-      {{ item.label }}
-      （{{ item.value }} / {{ item.enabled }}）
-    </ElOption>
-  </ElSelect>
-  <ElDivider />
   <div>
-    <ElForm :model="from">
-      <ElFormItem label="过滤禁用项">
-        <ElSwitch v-model="from.isEnable" />
-      </ElFormItem>
-      <ElFormItem label="">
-        <ElButton type="primary" @click="handleGetDictData">
-          获取字典数据
-        </ElButton>
-      </ElFormItem>
-    </ElForm>
+    <p class="my-1!">
+      字典数据: {{ dictList.length }}
+    </p>
+    <p class="my-1!">
+      选择字典: {{ dictItem }}
+    </p>
+    <ElSelect v-model="dictItem" placeholder="请选择字典">
+      <ElOption
+        v-for="item in dictList"
+        :key="item.id"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.enabled === '0'"
+      >
+        {{ item.label }}
+        （{{ item.value }} / {{ item.enabled }}）
+      </ElOption>
+    </ElSelect>
+    <ElDivider />
+    <div>
+      <ElForm :model="from">
+        <ElFormItem label="过滤禁用项">
+          <ElSwitch v-model="from.isEnable" />
+        </ElFormItem>
+        <ElFormItem label="">
+          <ElButton type="primary" @click="handleGetDictData">
+            获取字典数据
+          </ElButton>
+        </ElFormItem>
+      </ElForm>
+    </div>
   </div>
-</div>
 </template>

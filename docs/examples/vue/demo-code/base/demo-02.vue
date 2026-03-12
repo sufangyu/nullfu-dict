@@ -20,7 +20,9 @@ const { loading, data, dictMap, load } = useDict(code, {
     </div>
 
     <div class="py-2">
-      <ElButton type="primary" @click="load">获取字典</ElButton>
+      <ElButton type="primary" @click="load">
+        获取字典
+      </ElButton>
     </div>
   </div>
 </template>

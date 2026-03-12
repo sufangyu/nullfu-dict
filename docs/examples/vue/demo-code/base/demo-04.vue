@@ -7,7 +7,7 @@ const { loading, data, dictMap } = useDict(codes);
 const {
   loading: loadingForOther,
   data: dataForOther,
-  dictMap: dictMapForOther
+  dictMap: dictMapForOther,
 } = useDict(code);
 
 // 外部字典
@@ -15,7 +15,7 @@ const codeExternal = 'DICT_EXTERNAL';
 const {
   loading: loadingForExternal,
   data: dataForExternal,
-  dictMap: dictMapForExternal
+  dictMap: dictMapForExternal,
 } = useDict(codeExternal, {
   namespace: 'external',
 });

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems } from '@nullfu/dict-core';
 import { onMounted, ref } from 'vue';
-import { createDictManager, getDictItems, type DictItemDefault } from '@nullfu/dict-core';
 
 
 const dictManager = createDictManager({
@@ -10,43 +11,43 @@ const dictManager = createDictManager({
 
 
 const firstDictList = ref<DictItemDefault[]>([]);
-const getDictFirst = async() => {
+async function getDictFirst() {
   const res = await dictManager.fetchDict('DICT_FIRST');
   console.log('DICT_FIRST', res);
   firstDictList.value = getDictItems(res.DICT_FIRST);
-};
+}
 
 const styleDictList = ref<DictItemDefault[]>([]);
-const getDictStyles = async() => {
+async function getDictStyles() {
   const res = await dictManager.fetchDict('DICT_STYLES');
   console.log('DICT_STYLES', res);
   styleDictList.value = getDictItems(res.DICT_STYLES);
-};
+}
 
 const reasonDictList = ref<DictItemDefault[]>([]);
-const getDictReason = async() => {
+async function getDictReason() {
   const res = await dictManager.fetchDict('DICT_REASON');
   console.log('DICT_REASON', res);
   reasonDictList.value = getDictItems(res.DICT_REASON);
-};
+}
 
 const sourceDictList = ref<DictItemDefault[]>([]);
 const ohterDictList = ref<DictItemDefault[]>([]);
-const getDictMulti = async() => {
+async function getDictMulti() {
   const res = await dictManager.fetchDict(['DICT_SOURCE', 'DICT_OTHER']);
   console.log('DICT_SOURCE & DICT_OTHER', res);
   sourceDictList.value = getDictItems(res.DICT_SOURCE);
   ohterDictList.value = getDictItems(res.DICT_OTHER);
-};
+}
 
 const aloneDictList = ref<DictItemDefault[]>([]);
-const getDictAlone = async() => {
+async function getDictAlone() {
   const res = await dictManager.fetchDict(['DICT_ALONE']);
   console.log('DICT_ALONE', res);
   aloneDictList.value = getDictItems(res.DICT_ALONE);
-};
+}
 
-onMounted(async() => {
+onMounted(async () => {
   // 1. 等待完成才会请求后续
   await getDictFirst();
 
@@ -64,26 +65,43 @@ onMounted(async() => {
 <template>
   <div>
     <div>
-      <h1 class="text-lg! my-1!">同步优先请求:</h1>
-      <p class="my-1!">DICT_FIRST: {{ firstDictList.length }}</p>
+      <h1 class="text-lg! my-1!">
+        同步优先请求:
+      </h1>
+      <p class="my-1!">
+        DICT_FIRST: {{ firstDictList.length }}
+      </p>
     </div>
 
-    <div class="border-t border-gray-500 my-6"></div>
+    <div class="border-t border-gray-500 my-6" />
 
     <div>
-      <h1 class="text-lg! my-1!">异步请求 & 合并请求窗口内延迟请求:</h1>
-      <p class="my-1!">DICT_STYLES: {{ styleDictList.length }}</p>
-      <p class="my-1!">DICT_REASON: {{ reasonDictList.length }}</p>
-      <p class="my-1!">DICT_SOURCE: {{ sourceDictList.length }}</p>
-      <p class="my-1!">DICT_OTHER: {{ ohterDictList.length }}</p>
+      <h1 class="text-lg! my-1!">
+        异步请求 & 合并请求窗口内延迟请求:
+      </h1>
+      <p class="my-1!">
+        DICT_STYLES: {{ styleDictList.length }}
+      </p>
+      <p class="my-1!">
+        DICT_REASON: {{ reasonDictList.length }}
+      </p>
+      <p class="my-1!">
+        DICT_SOURCE: {{ sourceDictList.length }}
+      </p>
+      <p class="my-1!">
+        DICT_OTHER: {{ ohterDictList.length }}
+      </p>
     </div>
 
-    <div class="border-t border-gray-500 my-6"></div>
+    <div class="border-t border-gray-500 my-6" />
 
     <div>
-      <h1 class="text-lg! my-1!">合并请求窗口外的延迟请求:</h1>
-      <p class="my-1!">DICT_ALONE: {{ aloneDictList.length }}</p>
+      <h1 class="text-lg! my-1!">
+        合并请求窗口外的延迟请求:
+      </h1>
+      <p class="my-1!">
+        DICT_ALONE: {{ aloneDictList.length }}
+      </p>
     </div>
-
   </div>
 </template>

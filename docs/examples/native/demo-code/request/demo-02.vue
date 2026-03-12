@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems } from '@nullfu/dict-core';
 import axios from 'axios';
-import { createDictManager, getDictItems, type DictItemDefault } from '@nullfu/dict-core';
+import { onMounted, ref } from 'vue';
 
 
 const stylesDictList = ref<DictItemDefault[]>([]);
@@ -14,7 +15,7 @@ const dictManager = createDictManager({
   headers: {
     'X-Custom': 'custom-headers',
   },
-  requestFn: async(config) => {
+  requestFn: async (config) => {
     const responseRaw = await axios.post(`${config.url}`, config.data, {
       headers: {
         ...config.headers,
@@ -25,7 +26,7 @@ const dictManager = createDictManager({
   },
 });
 
-onMounted(async() => {
+onMounted(async () => {
   const res = await dictManager.fetchDict(['DICT_STYLES', 'DICT_REASON']);
   stylesDictList.value = getDictItems(res.DICT_STYLES);
   reasonDictList.value = getDictItems(res.DICT_REASON);
@@ -35,7 +36,11 @@ onMounted(async() => {
 
 <template>
   <div>
-    <p class="my-1!">DICT_STYLES: {{ stylesDictList.length }}</p>
-    <p class="my-1!">DICT_REASON: {{ reasonDictList.length }}</p>
+    <p class="my-1!">
+      DICT_STYLES: {{ stylesDictList.length }}
+    </p>
+    <p class="my-1!">
+      DICT_REASON: {{ reasonDictList.length }}
+    </p>
   </div>
 </template>

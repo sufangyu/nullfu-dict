@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems, listToTree } from '@nullfu/dict-core';
 import { ref } from 'vue';
-import { createDictManager, DictItemDefault, getDictItems, listToTree } from '@nullfu/dict-core';
 
 interface DictItem {
   id: string | number;
@@ -24,7 +25,7 @@ const dictManager = createDictManager({
   url: '/api/dict',
 });
 
-const handleGetDictData = async () => {
+async function handleGetDictData() {
   dictTree.value = [];
   dictItem.value = null;
 
@@ -45,34 +46,38 @@ const handleGetDictData = async () => {
 
 
 <template>
-<div>
-  <p class="my-1!">字典数据: {{ dictTree.length }}</p>
-  <p class="my-1!">选择字典: {{ dictItem }}</p>
-  <ElCascader
-    v-model="dictItem"
-    :options="dictTree"
-    :props="{
-      label: 'dictName',
-      value: 'dictCode',
-    }"
-  />
-
-  <ElDivider />
-
   <div>
-    <ElForm :model="from">
-      <ElFormItem label="最大层级">
-        <ElSlider v-model="from.maxLevel" :min="0" :max="9" show-stops />
-      </ElFormItem>
-      <ElFormItem label="删除源字段">
-        <ElSwitch v-model="from.cleanSource" />
-      </ElFormItem>
-      <ElFormItem label="">
-        <ElButton type="primary" @click="handleGetDictData">
-          获取数据-树形
-        </ElButton>
-      </ElFormItem>
-    </ElForm>
+    <p class="my-1!">
+      字典数据: {{ dictTree.length }}
+    </p>
+    <p class="my-1!">
+      选择字典: {{ dictItem }}
+    </p>
+    <ElCascader
+      v-model="dictItem"
+      :options="dictTree"
+      :props="{
+        label: 'dictName',
+        value: 'dictCode',
+      }"
+    />
+
+    <ElDivider />
+
+    <div>
+      <ElForm :model="from">
+        <ElFormItem label="最大层级">
+          <ElSlider v-model="from.maxLevel" :min="0" :max="9" show-stops />
+        </ElFormItem>
+        <ElFormItem label="删除源字段">
+          <ElSwitch v-model="from.cleanSource" />
+        </ElFormItem>
+        <ElFormItem label="">
+          <ElButton type="primary" @click="handleGetDictData">
+            获取数据-树形
+          </ElButton>
+        </ElFormItem>
+      </ElForm>
+    </div>
   </div>
-</div>
 </template>

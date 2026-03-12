@@ -7,14 +7,16 @@ const { loading: loadingForDefault, data: dataForDefault, dictMap: dicMapForDefa
 
 const { loading, data, dictMap } = useDict('DICT_REASON', {
   namespace: 'external',
-  onFetchDictError: (status, message, _error) => ElMessage.error({message: `[${status}] ${message}`, grouping: true})
+  onFetchDictError: (status, message, _error) => ElMessage.error({ message: `[${status}] ${message}`, grouping: true }),
 });
 </script>
 
 
 <template>
   <div class="text-sm">
-    <h1 class="text-lg!">命名空间: default</h1>
+    <h1 class="text-lg!">
+      命名空间: default
+    </h1>
     <div class="py-2">
       加载状态: {{ loadingForDefault }}
     </div>
@@ -26,10 +28,12 @@ const { loading, data, dictMap } = useDict('DICT_REASON', {
     </div>
   </div>
 
-  <div class="border-t border-gray-500 my-4"></div>
+  <div class="border-t border-gray-500 my-4" />
 
   <div class="text-sm">
-    <h1 class="text-lg!">命名空间: external</h1>
+    <h1 class="text-lg!">
+      命名空间: external
+    </h1>
     <div class="py-2">
       加载状态: {{ loading }}
     </div>

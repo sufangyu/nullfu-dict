@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { createDictManager } from '@nullfu/dict-core';
+import { ElMessage } from 'element-plus';
 
 
 const dictManager = createDictManager({
@@ -8,8 +9,8 @@ const dictManager = createDictManager({
   mergeDelay: 125,
 });
 
-const cancelRequest = async() => {
-  const p = dictManager.fetchDict(['DICT_CANCEL_REQUESR']);
+async function cancelRequest() {
+  const p = dictManager.fetchDict(['DICT_CANCEL_REQUEST']);
   // 在合并请求窗口期内取消（请求发出前）
   setTimeout(() => dictManager.cancelFetch(), 50);
 
@@ -17,7 +18,7 @@ const cancelRequest = async() => {
     await p;
   } catch (err) {
     console.log('已取消（请求未发出）', err.message);
-    alert(err.message);
+    ElMessage.error('已取消（请求未发出）');
   }
 }
 </script>
@@ -25,6 +26,8 @@ const cancelRequest = async() => {
 
 <template>
   <div>
-    <ElButton type="primary" @click="cancelRequest">获取字典</ElButton>
+    <ElButton type="primary" @click="cancelRequest">
+      获取字典
+    </ElButton>
   </div>
 </template>

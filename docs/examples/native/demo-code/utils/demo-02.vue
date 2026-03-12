@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { getDictLabel } from '@nullfu/dict-core';
 import { computed } from 'vue';
-import { DictItemDefault, getDictLabel } from '@nullfu/dict-core';
 
 // 自定义的数据类型
-interface DictItem  {
+interface DictItem {
   id: string;
   dictName: string;
   dictCode: string;
@@ -47,18 +48,23 @@ const dictNameCustomUnfinde = computed(() => {
     valueKey: 'dictCode',
   });
 });
-
-
-
 </script>
 
 
 <template>
-<div>
-  <p class="my-1!">默认数据类型: {{ dictNameDefault }}</p>
-  <p class="my-1!">匹配不上数据: {{ dictNameDefaultUnfinde }}</p>
-  <p class="my-1!">空数据占位符: {{ dictNameDefaultEmpty }}</p>
-  <ElDivider />
-  <p class="my-1!">自定义数据类型: {{ dictNameCustom }}</p>
-</div>
+  <div>
+    <p class="my-1!">
+      默认数据类型: {{ dictNameDefault }}
+    </p>
+    <p class="my-1!">
+      匹配不上数据: {{ dictNameDefaultUnfinde }}
+    </p>
+    <p class="my-1!">
+      空数据占位符: {{ dictNameDefaultEmpty }}
+    </p>
+    <ElDivider />
+    <p class="my-1!">
+      自定义数据类型: {{ dictNameCustom }}
+    </p>
+  </div>
 </template>

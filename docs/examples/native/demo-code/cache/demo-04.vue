@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
 import { createDictManager } from '@nullfu/dict-core';
+import { onMounted, ref } from 'vue';
 
 
 const maxCacheSizeManager = createDictManager({
@@ -10,12 +10,12 @@ const maxCacheSizeManager = createDictManager({
 });
 
 const logResult = ref<string[]>([]);
-const pinrtLog = (msg: string) => {
+function pinrtLog(msg: string) {
   logResult.value.push(msg);
   console.log(msg);
-};
+}
 
-const handleValidateMaxCacheSize = async() => {
+async function handleValidateMaxCacheSize() {
   // 先塞满 4 个：顺序为 A, B, C, D
   await maxCacheSizeManager.fetchDict('A');
   await maxCacheSizeManager.fetchDict('B');
@@ -30,10 +30,10 @@ const handleValidateMaxCacheSize = async() => {
   // 再请求 E，满容量应淘汰“最久未用”的 B，不是 A
   await maxCacheSizeManager.fetchDict('E');
   pinrtLog(`3.当前缓存的keys:: ${maxCacheSizeManager.getCacheKeys()}`);
-};
+}
 
 
-onMounted(async() => {
+onMounted(async () => {
   handleValidateMaxCacheSize();
 });
 </script>
@@ -41,17 +41,20 @@ onMounted(async() => {
 
 <template>
   <div>
-    <h1 class="text-lg! my-1!">结果输入打印:</h1>
-    <p class="my-1!" v-if="logResult.length === 0">...</p>
+    <h1 class="text-lg! my-1!">
+      结果输入打印:
+    </h1>
+    <p v-if="logResult.length === 0" class="my-1!">
+      ...
+    </p>
     <template v-else>
       <p
-        class="my-1!"
         v-for="(log, idx) in logResult"
         :key="idx"
+        class="my-1!"
       >
         {{ log }}
       </p>
     </template>
-
   </div>
 </template>

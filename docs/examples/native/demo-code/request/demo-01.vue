@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { createDictManager, getDictItems } from '@nullfu/dict-core';
 import { onMounted, ref } from 'vue';
-import { createDictManager, getDictItems, type DictItemDefault } from '@nullfu/dict-core';
 
 // 响应数据类型
 interface ResponseData {
@@ -23,7 +24,7 @@ const dictManager = createDictManager<DictItemDefault, ResponseData>({
   requestInterceptor: (config) => {
     config.headers = {
       ...config.headers,
-      'X-Custom-Interceptor': 'custom-interceptor'
+      'X-Custom-Interceptor': 'custom-interceptor',
     };
 
     return config;
@@ -38,7 +39,7 @@ const dictManager = createDictManager<DictItemDefault, ResponseData>({
   parseResponseData: (res) => {
     const list: DictItemDefault[] = [];
     Object.entries(res.data).forEach(([_key, value]) => {
-      list.push(value)
+      list.push(value);
     });
     return list;
   },
@@ -48,7 +49,7 @@ const dictManager = createDictManager<DictItemDefault, ResponseData>({
   },
 });
 
-onMounted(async() => {
+onMounted(async () => {
   const res = await dictManager.fetchDict(['DICT_STYLES', 'DICT_REASON']);
   stylesDictList.value = getDictItems(res.DICT_STYLES);
   reasonDictList.value = getDictItems(res.DICT_REASON);
@@ -58,7 +59,11 @@ onMounted(async() => {
 
 <template>
   <div>
-    <p class="my-1!">DICT_STYLES: {{ stylesDictList.length }}</p>
-    <p class="my-1!">DICT_REASON: {{ reasonDictList.length }}</p>
+    <p class="my-1!">
+      DICT_STYLES: {{ stylesDictList.length }}
+    </p>
+    <p class="my-1!">
+      DICT_REASON: {{ reasonDictList.length }}
+    </p>
   </div>
 </template>

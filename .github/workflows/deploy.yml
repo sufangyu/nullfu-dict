@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  ci:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo

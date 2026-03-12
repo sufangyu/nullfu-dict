@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { DictItemDefault } from '@nullfu/dict-core';
+import { treeToArray } from '@nullfu/dict-core';
 import { ref } from 'vue';
-import { DictItemDefault, treeToArray } from '@nullfu/dict-core';
 
 interface DictItem {
   id: string | number;
@@ -49,9 +50,9 @@ const TREE_DATA = [
             value: 'DICT_REASON-30001-30001002002',
             disabled: false,
             children: [],
-          }
+          },
         ],
-      }
+      },
     ],
   },
   {
@@ -61,7 +62,7 @@ const TREE_DATA = [
     value: 'DICT_REASON-30002000',
     disabled: false,
     children: [
-      { id: 30002001, parentId: 30002000, label: '系统异常', value: 'DICT_REASON-30002001', children: [], disabled: false }
+      { id: 30002001, parentId: 30002000, label: '系统异常', value: 'DICT_REASON-30002001', children: [], disabled: false },
     ],
   },
   {
@@ -82,7 +83,7 @@ const from = ref({
 
 const dictList = ref<DictItem[]>([]);
 
-const handleGetDictData = async () => {
+async function handleGetDictData() {
   const curDictList = treeToArray<DictItemDefault, DictItem>(TREE_DATA, {
     labelKey: 'dictName',
     valueKey: 'dictCode',
@@ -103,47 +104,51 @@ const handleGetDictData = async () => {
 
 
 <template>
-<div>
-  <ElRow :gutter="32">
-    <ElCol :span="12">
-      <h1 class="text-base! my-1!">数据源-{{ TREE_DATA.length }}</h1>
-      <ElCascader
-        :options="TREE_DATA"
-        style="width: 100%"
-      />
-    </ElCol>
-    <ElCol :span="12">
-      <h1 class="text-base! my-1!">转换结果-{{ dictList.length }}</h1>
-      <ElSelect :options="dictList">
-        <ElOption
-          v-for="dictItem in dictList"
-          :key="dictItem.id"
-          :value="dictItem.dictCode"
-          :disabled="dictItem.isEnabled === '0'"
-        >
-          {{ dictItem.dictName }} / {{ dictItem.dictCode }} / {{ dictItem.level }} / {{ dictItem.isEnabled }}
-        </ElOption>
-      </ElSelect>
-    </ElCol>
-  </ElRow>
-
-
-  <ElDivider />
-
   <div>
-    <ElForm :model="from">
-      <ElFormItem label="最大层级">
-        <ElSlider v-model="from.maxLevel" :min="0" :max="9" show-stops />
-      </ElFormItem>
-      <ElFormItem label="删除源字段">
-        <ElSwitch v-model="from.cleanSource" />
-      </ElFormItem>
-      <ElFormItem label="">
-        <ElButton type="primary" @click="handleGetDictData">
-          获取数据-偏平数组
-        </ElButton>
-      </ElFormItem>
-    </ElForm>
+    <ElRow :gutter="32">
+      <ElCol :span="12">
+        <h1 class="text-base! my-1!">
+          数据源-{{ TREE_DATA.length }}
+        </h1>
+        <ElCascader
+          :options="TREE_DATA"
+          style="width: 100%"
+        />
+      </ElCol>
+      <ElCol :span="12">
+        <h1 class="text-base! my-1!">
+          转换结果-{{ dictList.length }}
+        </h1>
+        <ElSelect :options="dictList">
+          <ElOption
+            v-for="dictItem in dictList"
+            :key="dictItem.id"
+            :value="dictItem.dictCode"
+            :disabled="dictItem.isEnabled === '0'"
+          >
+            {{ dictItem.dictName }} / {{ dictItem.dictCode }} / {{ dictItem.level }} / {{ dictItem.isEnabled }}
+          </ElOption>
+        </ElSelect>
+      </ElCol>
+    </ElRow>
+
+
+    <ElDivider />
+
+    <div>
+      <ElForm :model="from">
+        <ElFormItem label="最大层级">
+          <ElSlider v-model="from.maxLevel" :min="0" :max="9" show-stops />
+        </ElFormItem>
+        <ElFormItem label="删除源字段">
+          <ElSwitch v-model="from.cleanSource" />
+        </ElFormItem>
+        <ElFormItem label="">
+          <ElButton type="primary" @click="handleGetDictData">
+            获取数据-偏平数组
+          </ElButton>
+        </ElFormItem>
+      </ElForm>
+    </div>
   </div>
-</div>
 </template>

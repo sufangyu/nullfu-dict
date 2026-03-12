@@ -15,7 +15,7 @@ const { loading, data, dictMap } = useDict(code);
       接口数据: {{ data }}
     </div>
     <div class="py-2">
-      字典({{code}})数据个数: {{ dictMap[code]?.length }}
+      字典({{ code }})数据个数: {{ dictMap[code]?.length }}
     </div>
   </div>
 </template>
