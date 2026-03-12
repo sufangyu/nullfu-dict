@@ -76,6 +76,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build packages
+        run: pnpm build
+
       - name: Publish packages
         run: pnpm -r --filter "./packages/*" publish --no-git-checks --access public
         env:
