@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@source '../../**/*.vue';
+@source '../../**/*.md';
+
+
+/* 适配主题 */
+@variant dark (.dark &);
+

@@ -1,0 +1,35 @@
+{
+  "name": "@nullfu/dict-vue",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {},
+  "keywords": [
+    "dict",
+    "dictionary"
+  ],
+  "repository": "https://github.com/sufangyu/nullfu-dict",
+  "author": "sufangyu",
+  "license": "ISC",
+  "dependencies": {
+    "@nullfu/dict-core": "workspace:^",
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@vue/devtools-api": "^8.0.7"
+  }
+}

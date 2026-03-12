@@ -1,0 +1,45 @@
+{
+  "name": "@nullfu/dict",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "dev": "pnpm run lint && pnpm tsx scripts/watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix",
+    "inspect:eslint": "pnpm exec eslint-config-inspector",
+    "runner": "pnpm tsx scripts/native-script-runner",
+    "build": "pnpm tsx scripts/build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.2.0",
+    "@changesets/cli": "^2.30.0",
+    "@eslint/config-inspector": "^1.4.2",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^24.10.1",
+    "chokidar": "^5.0.0",
+    "consola": "^3.4.2",
+    "eslint": "^9.39.1",
+    "eslint-plugin-check-file": "^3.3.1",
+    "fast-glob": "^3.3.3",
+    "minimist": "^1.2.8",
+    "p-queue": "^9.0.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18",
+    "yaml": "^2.8.2"
+  },
+  "packageManager": "pnpm@9",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
