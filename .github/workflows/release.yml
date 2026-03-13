@@ -91,6 +91,24 @@ jobs:
       - name: Build packages
         run: pnpm build
 
+      - name: Version packages (Changesets)
+        run: pnpm changeset version
+
+      - name: Get tag version
+        id: tag
+        run: |
+          TAG_NAME=${GITHUB_REF##*/}
+          echo "VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Commit version & changelog
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add .
+          git commit -m "chore: release $TAG_NAME"
+          git push
+
       - name: Generate changelog & Create release
         run: npx changelogithub
         env:
