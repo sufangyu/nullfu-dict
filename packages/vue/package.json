@@ -1,6 +1,6 @@
 {
   "name": "@nullfux/dict-vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "type": "module",
   "main": "dist/index.cjs",
@@ -22,7 +22,7 @@
     "dict",
     "dictionary"
   ],
-  "homepage": "https://dict-manager.vercel.app/",
+  "homepage": "https://dict-manager.vercel.app",
   "repository": "https://github.com/sufangyu/anyfu-dict",
   "author": "sufangyu",
   "license": "ISC",

@@ -1,6 +1,6 @@
 {
   "name": "@nullfux/dict-core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "type": "module",
   "main": "dist/index.cjs.js",
@@ -24,7 +24,7 @@
     "dict",
     "dictionary"
   ],
-  "homepage": "https://dict-manager.vercel.app/",
+  "homepage": "https://dict-manager.vercel.app",
   "repository": "https://github.com/sufangyu/anyfu-dict",
   "author": "sufangyu",
   "license": "ISC",
