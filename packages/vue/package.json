@@ -22,7 +22,8 @@
     "dict",
     "dictionary"
   ],
-  "repository": "https://github.com/sufangyu/nullfu-dict",
+  "homepage": "https://dict-manager.vercel.app/",
+  "repository": "https://github.com/sufangyu/anyfu-dict",
   "author": "sufangyu",
   "license": "ISC",
   "dependencies": {
