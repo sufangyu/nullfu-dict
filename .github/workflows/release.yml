@@ -130,5 +130,6 @@ jobs:
         run: |
           npx vercel deploy docs/.vitepress/dist \
           --prod \
+          --name dict-docs \
           --token=${{ secrets.VERCEL_TOKEN }} \
           --yes
