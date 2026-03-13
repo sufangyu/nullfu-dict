@@ -11,12 +11,16 @@ on:
         description: '发布版本号 (例如 v1.0.0)'
         required: false
         default: ''
+      publish-release:
+        description: '发布 Releases'
+        required: false
+        default: 'true'
       publish-npm:
-        description: '是否发布 npm 包'
+        description: '发布 npm 包'
         required: false
         default: 'true'
       deploy-docs:
-        description: '是否发布文档'
+        description: '发布文档'
         required: false
         default: 'true'
 
@@ -61,7 +65,7 @@ jobs:
 
 
   # 发布 npm 包
-  publish-npm:
+  publish:
     runs-on: ubuntu-latest
     needs: setup
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish-npm == 'true' || github.event_name != 'workflow_dispatch' }}
@@ -85,14 +89,36 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 1️⃣ 计算版本 & 生成 CHANGELOG
+      - name: Version packages & Generate CHANGELOG
+        run: pnpm changeset version
+
+      # 2️⃣ 提交 version 更新到 Git
+      - name: Commit version & changelog
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "chore(release): version bump [skip ci]" || echo "No changes to commit"
 
       - name: Build packages
         run: pnpm build
 
-      - name: Publish packages
-        run: pnpm -r --filter "./packages/*" publish --no-git-checks --access public
+      # 3️⃣ Publish packages to npm
+      # - name: Publish packages
+      #   run: pnpm -r --filter "./packages/*" publish --no-git-checks --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+       # 4️⃣ Create GitHub Release
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: CHANGELOG.md
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   # 发布文档
