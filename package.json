@@ -10,7 +10,8 @@
     "inspect:eslint": "pnpm exec eslint-config-inspector",
     "runner": "pnpm tsx scripts/native-script-runner",
     "build": "pnpm tsx scripts/build",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "changeset:version": "changeset version"
   },
   "keywords": [],
   "author": "",
