@@ -91,13 +91,13 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Generate changelog
+      - name: Generate changelog & Create release
         run: npx changelogithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      # - name: Create GitHub Release
+      #   uses: softprops/action-gh-release@v2
 
       # Publish packages to npm
       # - name: Publish packages
