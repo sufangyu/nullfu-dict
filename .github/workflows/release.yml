@@ -89,17 +89,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 1️⃣ 计算版本 & 生成 CHANGELOG
-      - name: Version packages & Generate CHANGELOG
-        run: pnpm changeset version
-
-      # 2️⃣ 提交 version 更新到 Git
-      - name: Commit version & changelog
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "chore(release): version bump [skip ci]" || echo "No changes to commit"
 
       - name: Build packages
         run: pnpm build
@@ -110,15 +99,13 @@ jobs:
       #   env:
       #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-       # 4️⃣ Create GitHub Release
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          body_path: CHANGELOG.md
+      - name: Generate changelog
+        run: npx changelogithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
 
 
   # 发布文档

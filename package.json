@@ -1,7 +1,6 @@
 {
   "name": "@nullfux/dict",
-  "version": "0.0.1",
-  "description": "",
+  "description": "0.1.0",
   "private": true,
   "scripts": {
     "prepublishOnly": "npm run build",
@@ -12,14 +11,15 @@
     "runner": "pnpm tsx scripts/native-script-runner",
     "build": "pnpm tsx scripts/build",
     "changeset": "changeset",
-    "version": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "changeset:version": "changeset version",
+    "changeset:release": "changeset publish"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@antfu/eslint-config": "^7.2.0",
+    "@changesets/changelog-github": "^0.6.0",
     "@changesets/cli": "^2.30.0",
     "@eslint/config-inspector": "^1.4.2",
     "@types/minimist": "^1.2.5",
